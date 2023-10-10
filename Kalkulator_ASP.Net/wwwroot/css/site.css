@@ -1,0 +1,82 @@
+html {
+  font-size: 14px;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+body {
+    background-color: #9e9e9e;
+}
+
+.hiddenText{
+    display: none;
+}
+
+
+/***KALKULATOR***/
+.kalkulator {
+    width: 1000px;
+    height: 800px;
+    background-color: rgb(255, 0, 0);
+    margin: auto;
+    margin-top: 10px;
+    background-color: #262626;
+    padding: 10px;
+    border: 2px solid #d4970b;
+}
+
+#Racun1, #Racun2{
+    height: 40px;
+}
+
+.row{
+    margin: 20px 0;
+}
+
+#row1 {
+    width: 40%;
+    margin-left: 57%;
+}
+
+#row3 {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 50px;
+}
+
+.Calc_Button{
+    width: 80px;
+    height: 60px;
+    background-color: white;
+    font-weight: bold;
+}
+
+
+.button-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 90px);
+    justify-content: space-between;
+    align-items: center;
+    grid-gap: 50px;
+    margin: 20px 50px;
+    margin-top: 4rem;
+}
+
+
+
+.OperationBtn{
+    background-color: orange;
+    border: 1px solid black;
+    width: 90px;
+}
