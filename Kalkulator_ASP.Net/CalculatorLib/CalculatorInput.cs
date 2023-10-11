@@ -12,6 +12,7 @@ namespace Kalkulator_ASP.Net.CalculatorLib
             string Racun1 = calc.Racun2;
             string Racun3 = calc.Racun3;
             double mem = calc.Mem;
+            string isScientific = calc.IsScientific;
 
             //za izbjegavanje errora
             if (Racun1 == null)
@@ -263,21 +264,22 @@ namespace Kalkulator_ASP.Net.CalculatorLib
                     mem -= Convert.ToDouble(Racun1);
                 }
             }
+
+
             else if(btn == "btn_modeChange")
             {
                 Console.WriteLine("changed");
-                //calc.isScientific = calc.isScientific ? false : true;
-                if(calc.IsScientific == false)
+                if(isScientific == "no")
                 {
-                    calc.IsScientific = true;
+                    isScientific = "yes";
                 }
-                else if(calc.IsScientific == true)
+                else if(isScientific == "yes")
                 {
-                    calc.IsScientific = false;
+                    isScientific = "no";
                 }
             }
 
-            Console.WriteLine(calc.IsScientific);
+            //Console.WriteLine(calc.IsScientific);
 
             //Setting values back
             calc.Racun3 = Racun3;
@@ -285,6 +287,8 @@ namespace Kalkulator_ASP.Net.CalculatorLib
             calc.Racun2 = Racun1;
             calc.Zadnjigumb = zadnjigumb;
             calc.Mem = mem;
+            calc.IsScientific = isScientific;
+            Console.WriteLine("u funkc: " + calc.IsScientific);
         }
 
 

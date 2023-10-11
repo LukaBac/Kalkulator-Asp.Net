@@ -38,15 +38,26 @@ body {
 
 #Racun1, #Racun2{
     height: 40px;
+    text-align: right;
 }
 
 .row{
     margin: 20px 0;
 }
 
+#row1 input {
+    width: 70%;
+    position: absolute;
+    margin-left: 30%;
+}
+
 #row1 {
-    width: 40%;
-    margin-left: 57%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+    width: 100%;
+    position: relative;
 }
 
 #row3 {

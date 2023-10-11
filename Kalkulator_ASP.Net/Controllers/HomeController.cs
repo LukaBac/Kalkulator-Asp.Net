@@ -19,8 +19,9 @@ namespace Kalkulator_ASP.Net.Controllers
         public IActionResult Index(HomeModel calc)
         {
             string btn = Request.Form["CalcButton"];
-
             CalculatorInput.registerInput(btn, calc);
+            
+            Console.WriteLine(calc.IsScientific);
 
             return View(calc);
         }

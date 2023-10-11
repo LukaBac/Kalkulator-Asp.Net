@@ -7,6 +7,6 @@
         public string Racun3 { get; set; } = "";
         public string Zadnjigumb { get; set; } = "";
         public double Mem { get; set; }
-        public bool IsScientific { get; set; } = false;
+        public string IsScientific { get; set; } = "no";
     }
 }

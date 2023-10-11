@@ -11,24 +11,24 @@
         //ima li pametniji nacin za ovo gdje se ne koristi sakriven textbox?
         <input type="text" class="hiddenText" id="Mem" name="Mem" value="@Model.Mem">
         <input type="text" class="hiddenText" name="Zadnjigumb" value="@Model.Zadnjigumb">
-        <input type="text" class="hiddenText" name="IsScientific" value="@Model.IsScientific">
+        <input type="text" class="hiddenText" IsScientific name="IsScientific" value="@Model.IsScientific">
 
         <div class="row" id="row1">
             <div>
                 <button type="submit" class="modeButtons" id="btn_history">History</button>
                 <button type="submit" class="modeButtons" id="btn_mode" value="btn_modeChange" name="CalcButton">
-                    @if (Model.IsScientific)
-                    {
-                        <span>Basic</span>
-                    }
-                    else
+                    @if(Model.IsScientific == "no")
                     {
                         <span>Scientific</span>
                     }
+                    else if(Model.IsScientific == "yes")
+                    {
+                        <span>Basic</span>
+                    }
                 </button>
+            </div>
+            <input readonly type="text" id="Racun1" name="Racun1" asp-for="Racun1"  value="@Model.Racun1"> 
         </div>
-        <input readonly type="text" id="Racun1" name="Racun1" asp-for="Racun1"  value="@Model.Racun1"> 
-    </div>
 
     <div class="row" id="row2">
         <input readonly type="text" id="Racun2" name="Racun2" asp-for="Racun2"  value="@Model.Racun2"> 
