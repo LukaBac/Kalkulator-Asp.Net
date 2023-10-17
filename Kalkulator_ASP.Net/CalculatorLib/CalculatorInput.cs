@@ -1,5 +1,6 @@
 ﻿using Kalkulator_ASP.Net.Models;
 using System;
+using System.Drawing;
 using System.Text;
 
 namespace Kalkulator_ASP.Net.CalculatorLib
@@ -11,6 +12,7 @@ namespace Kalkulator_ASP.Net.CalculatorLib
             string Racun2 = calc.Racun1;
             string Racun1 = calc.Racun2;
             string Racun3 = calc.Racun3;
+            string scientificMode = calc.ScientificMode;
             double mem = calc.Mem;
             string isScientific = calc.IsScientific;
 
@@ -239,7 +241,7 @@ namespace Kalkulator_ASP.Net.CalculatorLib
                 }
             }
 
-            //memory NE RADI!!!!
+            //memory
             else if(btn == "btn_memclear")
             {
                 mem = 0;
@@ -268,7 +270,7 @@ namespace Kalkulator_ASP.Net.CalculatorLib
 
             else if(btn == "btn_modeChange")
             {
-                Console.WriteLine("changed");
+                //Console.WriteLine("changed");
                 if(isScientific == "no")
                 {
                     isScientific = "yes";
@@ -279,7 +281,240 @@ namespace Kalkulator_ASP.Net.CalculatorLib
                 }
             }
 
-            //Console.WriteLine(calc.IsScientific);
+
+
+
+            //SCIENTIFIC
+            else if (btn == "btn_rad")
+            {
+                scientificMode = "rad";
+                zadnjigumb = "scientificBtn";
+            }
+
+            else if (btn == "btn_deg")
+            {
+                scientificMode = "deg";
+                zadnjigumb = "scientificBtn";
+            }
+
+            else if (btn == "btn_sin" || btn == "btn_cos" || btn == "btn_tan" || btn == "btn_ctg")
+            {
+                double tempnum = 0;
+                string op = btn.Substring(4);
+                if (zadnjigumb != "scientificBtn" && !isLastOperator(zadnjigumb) && zadnjigumb != "." && Racun1 != "")
+                {
+                    if (scientificMode == "rad")
+                    {
+                        tempnum = float.Parse(Racun1);
+                        Racun3 = $"{op}(" + tempnum + "rad)";
+                        switch (op)
+                        {
+                            case "sin":
+                                Racun1 = (Math.Sin(tempnum)).ToString();
+                                break;
+                            case "cos":
+                                Racun1 = (Math.Cos(tempnum)).ToString();
+                                break;
+                            case "tan":
+                                Racun1 = (Math.Tan(tempnum)).ToString();
+                                break;
+                            case "ctg":
+                                Racun1 = (1 / Math.Tan(tempnum)).ToString();
+                                break;
+                        }
+                        zadnjigumb = "scientificBtn";
+                    }
+                    else if (scientificMode == "deg")
+                    {
+                        tempnum = float.Parse(Racun1);
+                        Racun3 = $"{op}(" + tempnum + "deg)";
+                        switch (op)
+                        {
+                            case "sin":
+                                Racun1 = (Math.Sin(tempnum * (Math.PI / 180))).ToString();
+                                break;
+                            case "cos":
+                                Racun1 = (Math.Cos(tempnum * (Math.PI / 180))).ToString();
+                                break;
+                            case "tan":
+                                Racun1 = (Math.Tan(tempnum * (Math.PI / 180))).ToString();
+                                break;
+                            case "ctg":
+                                Racun1 = (1 / Math.Tan(tempnum * (Math.PI / 180))).ToString();
+                                break;
+                        }
+                        zadnjigumb = "scientificBtn";
+                    }
+                    if (!containsOperator(Racun2))
+                    {
+                        Racun2 = Racun2.Replace(tempnum.ToString(), Racun1);
+                    }
+                    else
+                    {
+                        Racun2 = Racun2.Substring(0, operatorIndex(Racun2) + 2);
+                        Racun2 = Racun2 + Racun1;
+                    }
+                }
+            }
+
+            else if (btn == "btn_sin1" || btn == "btn_cos1" || btn == "btn_tan1" || btn == "btn_ctg1")
+            {
+                double tempnum = 0;
+                string op = "";
+
+                op = (btn == "btn_sin1") ? "Asin" : btn;
+                op = (btn == "btn_cos1") ? "Acos" : btn;
+                op = (btn == "btn_tan1") ? "Atan" : btn;
+                op = (btn == "btn_ctg1") ? "Actg" : btn;
+
+                if (zadnjigumb != "scientificBtn" && !isLastOperator(zadnjigumb) && zadnjigumb != "." && Racun1 != "")
+                {
+                    if (calc.ScientificMode == "rad")
+                    {
+                        tempnum = float.Parse(Racun1);
+                        Racun3 = $"{op}(" + tempnum + "rad)";
+                        switch (op)
+                        {
+                            case "Asin":
+                                Racun1 = (Math.Asin(tempnum)).ToString();
+                                break;
+                            case "Acos":
+                                Racun1 = (Math.Acos(tempnum)).ToString();
+                                break;
+                            case "Atan":
+                                Racun1 = (Math.Atan(tempnum)).ToString();
+                                break;
+                            case "Actg":
+                                Racun1 = (Math.Atan2(1, tempnum)).ToString();
+                                break;
+                        }
+                        zadnjigumb = "scientificBtn";
+                    }
+                    else if (calc.ScientificMode == "deg")
+                    {
+                        tempnum = float.Parse(Racun1);
+                        Racun3 = $"{op}(" + tempnum + "deg)";
+                        switch (op)
+                        {
+                            case "Asin":
+                                Racun1 = (Math.Asin(tempnum) * (180 / Math.PI)).ToString();
+                                break;
+                            case "Acos":
+                                Racun1 = (Math.Acos(tempnum) * (180 / Math.PI)).ToString();
+                                break;
+                            case "Atan":
+                                Racun1 = (Math.Atan(tempnum) * (180 / Math.PI)).ToString();
+                                break;
+                            case "Actg":
+                                Racun1 = (Math.Atan2(1, tempnum) * (180 / Math.PI)).ToString();
+                                break;
+                        }
+                        zadnjigumb = "scientificBtn";
+                    }
+
+                    if (!containsOperator(Racun2))
+                    {
+                        Racun2 = Racun2.Replace(tempnum.ToString(), Racun1);
+                    }
+                    else
+                    {
+                        Racun2 = Racun2.Substring(0, operatorIndex(Racun2) + 2);
+                        Racun2 = Racun2 + Racun1;
+                    }
+
+                }
+            }
+
+            else if (btn == "btn_pi")
+            {
+                double tempnum = 0;
+
+                if (zadnjigumb != "scientificBtn" && !isLastOperator(zadnjigumb) && zadnjigumb != "." && Racun1 != "")
+                {
+                    tempnum = float.Parse(Racun1);
+                    Racun3 = tempnum + "π";
+                    Racun1 = (tempnum * Math.PI).ToString();
+                    if (!containsOperator(Racun2))
+                    {
+                        Racun2 = Racun2.Replace(tempnum.ToString(), Racun1);
+                    }
+                    else
+                    {
+                        Racun2 = Racun2.Substring(0, operatorIndex(Racun2) + 2);
+                        Racun2 = Racun2 + Racun1;
+                    }
+                    zadnjigumb = "scientificBtn";
+                }
+
+                else if (Racun1 == "")
+                {
+                    Racun3 = "π";
+                    Racun1 = Math.PI.ToString();
+                    Racun2 += Racun1;
+                    zadnjigumb = "scientificBtn";
+                }
+            }
+
+            else if (btn == "btn_xpow2" || btn == "btn_xpow3" || btn == "btn_xinverse" || btn == "btn_logarithm" || btn == "btn_ln" || btn == "btn_exp" || btn == "btn_bin" || btn == "btn_hex" || btn == "btn_sqrt")
+            {
+                double tempnum = 0;
+                string op = btn.Substring(4);
+
+                if (zadnjigumb != "scientificBtn" && !isLastOperator(zadnjigumb) && zadnjigumb != "." && Racun1 != "")
+                {
+                    tempnum = float.Parse(Racun1);
+                    switch (op)
+                    {
+                        case "xpow2":
+                            Racun3 = tempnum + "^2";
+                            Racun1 = (Math.Pow(tempnum, 2)).ToString();
+                            break;
+                        case "xpow3":
+                            Racun3 = tempnum + "^3";
+                            Racun1 = (Math.Pow(tempnum, 3)).ToString();
+                            break;
+                        case "xinverse":
+                            Racun3 = "1/" + tempnum;
+                            Racun1 = (1 / tempnum).ToString();
+                            break;
+                        case "logarithm":
+                            Racun3 = "log(" + tempnum + ")";
+                            Racun1 = (Math.Log10(tempnum)).ToString();
+                            break;
+                        case "ln":
+                            Racun3 = "ln(" + tempnum + ")";
+                            Racun1 = (Math.Log(tempnum)).ToString();
+                            break;
+                        case "exp":
+                            Racun3 = "exp(" + tempnum + ")";
+                            Racun1 = (Math.Exp(tempnum)).ToString();
+                            break;
+                        case "hex":
+                            Racun3 = "hex(" + tempnum + ")";
+                            Racun1 = Convert.ToString(Convert.ToInt32(tempnum), 16);
+                            break;
+                        case "bin":
+                            Racun3 = "bin(" + tempnum + ")";
+                            Racun1 = Convert.ToString(Convert.ToInt32(tempnum), 2);
+                            break;
+                        case "Sqrt":
+                            Racun3 = "sqrt(" + tempnum + ")";
+                            Racun1 = (Math.Sqrt(tempnum)).ToString();
+                            break;
+                    }
+
+                    if (!containsOperator(Racun2))
+                    {
+                        Racun2 = Racun2.Replace(tempnum.ToString(), Racun1);
+                    }
+                    else
+                    {
+                        Racun2 = Racun2.Substring(0, operatorIndex(Racun2) + 2);
+                        Racun2 = Racun2 + Racun1;
+                    }
+                    zadnjigumb = "scientificBtn";
+                }
+
 
             //Setting values back
             calc.Racun3 = Racun3;
@@ -287,8 +522,8 @@ namespace Kalkulator_ASP.Net.CalculatorLib
             calc.Racun2 = Racun1;
             calc.Zadnjigumb = zadnjigumb;
             calc.Mem = mem;
+            calc.ScientificMode = scientificMode;
             calc.IsScientific = isScientific;
-            Console.WriteLine("u funkc: " + calc.IsScientific);
         }
 
 
@@ -330,6 +565,41 @@ namespace Kalkulator_ASP.Net.CalculatorLib
             catch
             {
                 return false;
+            }
+        }
+
+        private static bool containsOperator(string Racun2)
+        {
+            if (Racun2.Contains("+") || (Racun2.Contains("-") && Racun2.LastIndexOf("-") != 0) || Racun2.Contains("*") || Racun2.Contains("%"))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        private static int operatorIndex(string Racun2)
+        {
+            if (Racun2.Contains("+"))
+            {
+                return Racun2.IndexOf("+");
+            }
+            else if (Racun2.Contains("-"))
+            {
+                return Racun2.IndexOf("-");
+            }
+            else if (Racun2.Contains("*"))
+            {
+                return Racun2.IndexOf("*");
+            }
+            else if (Racun2.Contains("%"))
+            {
+                return Racun2.IndexOf("%");
+            }
+            else
+            {
+                return 0;
             }
         }
 

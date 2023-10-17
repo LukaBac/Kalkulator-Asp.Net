@@ -3,68 +3,100 @@
     ViewData["Title"] = "Kalkulator";
 }
 
-
-<div class="kalkulator">
-    @using (Html.BeginForm("Index", "Home", FormMethod.Post))
-    {
-        //Koliko sam shvatio, moram bindat property iz modela nekako unutar View-a inace se uvijek resetiraju promjene koje napravim u kontroleru
-        //ima li pametniji nacin za ovo gdje se ne koristi sakriven textbox?
-        <input type="text" class="hiddenText" id="Mem" name="Mem" value="@Model.Mem">
-        <input type="text" class="hiddenText" name="Zadnjigumb" value="@Model.Zadnjigumb">
-        <input type="text" class="hiddenText" IsScientific name="IsScientific" value="@Model.IsScientific">
-
-        <div class="row" id="row1">
-            <div>
-                <button type="submit" class="modeButtons" id="btn_history">History</button>
-                <button type="submit" class="modeButtons" id="btn_mode" value="btn_modeChange" name="CalcButton">
-                    @if(Model.IsScientific == "no")
-                    {
-                        <span>Scientific</span>
-                    }
-                    else if(Model.IsScientific == "yes")
-                    {
-                        <span>Basic</span>
-                    }
-                </button>
+@using (Html.BeginForm("Index", "Home", FormMethod.Post))
+        {
+<div class="kalkulator @(Model.IsScientific == "yes" ? "scientificCalc" : "normalCalc")">
+    @*//Koliko sam shvatio, moram bindat property iz modela nekako unutar View-a inace se uvijek resetiraju promjene koje napravim u kontroleru
+                //ima li pametniji nacin za ovo gdje se ne koristi sakriven textbox?*@
+    <input type="text" class="hiddenText" id="Mem" name="Mem" value="@Model.Mem">
+    <input type="text" class="hiddenText" name="Zadnjigumb" value="@Model.Zadnjigumb">
+    <input type="text" class="hiddenText" name="IsScientific" value="@Model.IsScientific">
+    <input type="text" class="hiddenText" name="ScientificMode" value="@Model.ScientificMode">
+    <div class="row" id="row1">
+                <div>
+                    <button type="submit" class="modeButtons" id="btn_history">History</button>
+                    <button type="submit" class="modeButtons" id="btn_mode" value="btn_modeChange" name="CalcButton">
+                        @if(Model.IsScientific == "no")
+                        {
+                            <span>Scientific</span>
+                        }
+                        else if(Model.IsScientific == "yes")
+                        {
+                            <span>Basic</span>
+                        }
+                    </button>
+                </div>
+                <input readonly type="text" id="Racun1" name="Racun1" asp-for="Racun1"  value="@Model.Racun1"> 
             </div>
-            <input readonly type="text" id="Racun1" name="Racun1" asp-for="Racun1"  value="@Model.Racun1"> 
+
+        <div class="row" id="row2">
+            <input readonly type="text" id="Racun2" name="Racun2" asp-for="Racun2"  value="@Model.Racun2"> 
+        </div>
+    <div style="display: flex;">
+        <div class="calculator">
+            <div class="row" id="row3">
+                <button class="Calc_Button" type="submit" id="btn_changeprefix" value="btn_changeprefix" name="CalcButton">+/-</button>
+                <button class="Calc_Button" type="submit" id="btn_memclear" value="btn_memclear" name="CalcButton">Mc</button>
+                <button class="Calc_Button" type="submit" id="btn_memrecall" value="btn_memrecall" name="CalcButton">Mr</button>
+                <button class="Calc_Button" type="submit" id="memreduce_btn" value="memreduce_btn" name="CalcButton">M-</button>
+                <button class="Calc_Button" type="submit" id="memplus_btn" value="memplus_btn" name="CalcButton">M+</button>
+            </div>
+
+            <div class="button-grid">
+                <button class="Calc_Button" type="submit" id="btn_clear" value="btn_clear" name="CalcButton">C</button>
+                <button class="Calc_Button" type="submit" id="btn_ce" value="btn_ce" name="CalcButton">CE</button>
+                <button class="Calc_Button" type="submit" id="btn_delete" value="btn_delete" name="CalcButton">Del</button>
+                <button class="Calc_Button OperationBtn" type="submit" id="btn_divide" value="btn_divide" name="CalcButton">/</button>
+                <button class="Calc_Button" type="submit" id="btn_7" value="btn_7" name="CalcButton">7</button>
+                <button class="Calc_Button" type="submit" id="btn_8" value="btn_8" name="CalcButton">8</button>
+                <button class="Calc_Button" type="submit" id="btn_9" value="btn_9" name="CalcButton">9</button>
+                <button class="Calc_Button OperationBtn" type="submit" id="btn_multiply" value="btn_multiply" name="CalcButton">X</button>
+                <button class="Calc_Button" type="submit" id="btn_4" value="btn_4" name="CalcButton">4</button>
+                <button class="Calc_Button" type="submit" id="btn_5" value="btn_5" name="CalcButton">5</button>
+                <button class="Calc_Button" type="submit" id="btn_6" value="btn_6" name="CalcButton">6</button>
+                <button class="Calc_Button OperationBtn" type="submit" id="btn_minus" value="btn_minus" name="CalcButton">-</button>
+                <button class="Calc_Button" type="submit" id="btn_1" value="btn_1" name="CalcButton">1</button>
+                <button class="Calc_Button" type="submit" id="btn_2" value="btn_2" name="CalcButton">2</button>
+                <button class="Calc_Button" type="submit" id="btn_3" value="btn_3" name="CalcButton">3</button>
+                <button class="Calc_Button OperationBtn" type="submit" id="btn_2" value="btn_plus" name="CalcButton">+</button>
+                <button class="Calc_Button" type="submit" id="btn_percentage" value="btn_percentage" name="CalcButton">%</button>
+                <button class="Calc_Button" type="submit" id="btn_0" value="btn_0" name="CalcButton">0</button>
+                <button class="Calc_Button" type="submit" id="btn_dot" value="btn_dot" name="CalcButton">.</button>
+                <button class="Calc_Button OperationBtn" type="submit" id="btn_equals" value="btn_equals" name="CalcButton">=</button>
+            </div>
+        
         </div>
 
-    <div class="row" id="row2">
-        <input readonly type="text" id="Racun2" name="Racun2" asp-for="Racun2"  value="@Model.Racun2"> 
+        <div class="scientific">
+            <div class="row" id="scientificRow1">
+                <button class="Calc_Button" type="radio" id="btn_rad" value="btn_rad" name="CalcButton">Rad</button>
+                <button class="Calc_Button" type="radio" id="btn_deg" value="btn_deg" name="CalcButton">Deg</button>
+                <input readonly type="text" id="Racun3" name="Racun3" asp-for="Racun3"  value="@Model.Racun3"> 
+            </div>
+
+            <div class="button-grid">
+                <button class="Calc_Button" type="submit" id="btn_degTOrad" value="btn_degTOrad" name="CalcButton">Rad/°</button>
+                <button class="Calc_Button" type="submit" id="btn_pi" value="btn_pi" name="CalcButton">π</button>
+                <button class="Calc_Button" type="submit" id="btn_xpow2" value="btn_xpow2" name="CalcButton">x^2</button>
+                <button class="Calc_Button" type="submit" id="btn_xinverse" value="btn_xinverse" name="CalcButton">1/x</button>
+                <button class="Calc_Button" type="submit" id="btn_sin" value="btn_sin" name="CalcButton">sin</button>
+                <button class="Calc_Button" type="submit" id="btn_sin1" value="btn_sin1" name="CalcButton">sin^-1</button>
+                <button class="Calc_Button" type="submit" id="btn_xpow3" value="btn_xpow3" name="CalcButton">x^3</button>
+                <button class="Calc_Button" type="submit" id="btn_sqrt" value="btn_sqrt" name="CalcButton">Sqrt</button>
+                <button class="Calc_Button" type="submit" id="btn_cos" value="btn_cos" name="CalcButton">cos</button>
+                <button class="Calc_Button" type="submit" id="btn_cos1" value="btn_cos1" name="CalcButton">cos^-1</button>
+                <button class="Calc_Button" type="submit" id="btn_logarithm" value="btn_logarithm" name="CalcButton">log</button>
+                <button class="Calc_Button" type="submit" id="btn_bin" value="btn_bin" name="CalcButton">bin</button>
+                <button class="Calc_Button" type="submit" id="btn_tan" value="btn_tan" name="CalcButton">tan</button>
+                <button class="Calc_Button" type="submit" id="btn_tan1" value="btn_tan1" name="CalcButton">tan^-1</button>
+                <button class="Calc_Button" type="submit" id="btn_ln" value="btn_ln" name="CalcButton">ln</button>
+                <button class="Calc_Button" type="submit" id="btn_hex" value="btn_hex" name="CalcButton">hex</button>
+                <button class="Calc_Button" type="submit" id="btn_ctg" value="btn_ctg" name="CalcButton">ctg</button>
+                <button class="Calc_Button" type="submit" id="btn_ctg1" value="btn_ctg1" name="CalcButton">ctg^-1</button>
+                <button class="Calc_Button" type="submit" id="btn_exp" value="btn_exp" name="CalcButton">exp</button>
+                <button class="Calc_Button" type="submit" id="btn_parenthesis" value="btn_parenthesis" name="CalcButton">()</button>
+            </div>
+        </div>
     </div>
-
-
-
-    <div class="row" id="row3">
-        <button class="Calc_Button" type="submit" id="btn_changeprefix" value="btn_changeprefix" name="CalcButton">+/-</button>
-        <button class="Calc_Button" type="submit" id="btn_memclear" value="btn_memclear" name="CalcButton">Mc</button>
-        <button class="Calc_Button" type="submit" id="btn_memrecall" value="btn_memrecall" name="CalcButton">Mr</button>
-        <button class="Calc_Button" type="submit" id="memreduce_btn" value="memreduce_btn" name="CalcButton">M-</button>
-        <button class="Calc_Button" type="submit" id="memplus_btn" value="memplus_btn" name="CalcButton">M+</button>
-    </div>
-
-    <div class="button-grid">
-        <button class="Calc_Button" type="submit" id="btn_clear" value="btn_clear" name="CalcButton">C</button>
-        <button class="Calc_Button" type="submit" id="btn_ce" value="btn_ce" name="CalcButton">CE</button>
-        <button class="Calc_Button" type="submit" id="btn_delete" value="btn_delete" name="CalcButton">Del</button>
-        <button class="Calc_Button OperationBtn" type="submit" id="btn_divide" value="btn_divide" name="CalcButton">/</button>
-        <button class="Calc_Button" type="submit" id="btn_7" value="btn_7" name="CalcButton">7</button>
-        <button class="Calc_Button" type="submit" id="btn_8" value="btn_8" name="CalcButton">8</button>
-        <button class="Calc_Button" type="submit" id="btn_9" value="btn_9" name="CalcButton">9</button>
-        <button class="Calc_Button OperationBtn" type="submit" id="btn_multiply" value="btn_multiply" name="CalcButton">X</button>
-        <button class="Calc_Button" type="submit" id="btn_4" value="btn_4" name="CalcButton">4</button>
-        <button class="Calc_Button" type="submit" id="btn_5" value="btn_5" name="CalcButton">5</button>
-        <button class="Calc_Button" type="submit" id="btn_6" value="btn_6" name="CalcButton">6</button>
-        <button class="Calc_Button OperationBtn" type="submit" id="btn_minus" value="btn_minus" name="CalcButton">-</button>
-        <button class="Calc_Button" type="submit" id="btn_1" value="btn_1" name="CalcButton">1</button>
-        <button class="Calc_Button" type="submit" id="btn_2" value="btn_2" name="CalcButton">2</button>
-        <button class="Calc_Button" type="submit" id="btn_3" value="btn_3" name="CalcButton">3</button>
-        <button class="Calc_Button OperationBtn" type="submit" id="btn_2" value="btn_plus" name="CalcButton">+</button>
-        <button class="Calc_Button" type="submit" id="btn_percentage" value="btn_percentage" name="CalcButton">%</button>
-        <button class="Calc_Button" type="submit" id="btn_0" value="btn_0" name="CalcButton">0</button>
-        <button class="Calc_Button" type="submit" id="btn_dot" value="btn_dot" name="CalcButton">.</button>
-        <button class="Calc_Button OperationBtn" type="submit" id="btn_equals" value="btn_equals" name="CalcButton">=</button>
-    </div>
-    }
 </div>
+}

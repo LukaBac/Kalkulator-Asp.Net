@@ -8,5 +8,8 @@
         public string Zadnjigumb { get; set; } = "";
         public double Mem { get; set; }
         public string IsScientific { get; set; } = "no";
+        public bool test { get; set; }
+
+        public string ScientificMode { get; set; } = "rad";
     }
 }

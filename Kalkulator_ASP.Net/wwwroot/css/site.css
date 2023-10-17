@@ -26,17 +26,32 @@ body {
 
 /***KALKULATOR***/
 .kalkulator {
-    width: 1000px;
-    height: 800px;
+    width: 800px;
+    height: 820px;
     background-color: rgb(255, 0, 0);
-    margin: auto;
-    margin-top: 10px;
+    /*margin-top: 10px;*/
     background-color: #262626;
-    padding: 10px;
     border: 2px solid #d4970b;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
 }
 
-#Racun1, #Racun2{
+.scientificCalc {
+    width: 1500px;
+}
+
+.normalCalc {
+    width: 800px;
+}
+
+.calculator{
+    width: 780px;
+    margin-left: 10px;
+}
+
+#Racun1, #Racun2 {
     height: 40px;
     text-align: right;
 }
@@ -49,6 +64,7 @@ body {
     width: 70%;
     position: absolute;
     margin-left: 30%;
+    margin-right: 1rem;
 }
 
 #row1 {
@@ -58,6 +74,20 @@ body {
     flex-direction: row;
     width: 100%;
     position: relative;
+    margin-right: 1rem;
+}
+
+#row1 button{
+    margin-left: 1rem;
+}
+
+#row2{
+    width: 100%;
+}
+
+#row2 input{
+    width: 99%;
+    margin-left: 0.5%;
 }
 
 #row3 {
@@ -90,4 +120,20 @@ body {
     background-color: orange;
     border: 1px solid black;
     width: 90px;
+}
+
+.normalCalc .scientific{
+    display: none;
+}
+
+.scientific .row{
+    display: flex;
+    flex-direction: row;
+    margin: 0;
+    margin-left: 3rem;
+}
+
+.scientific .row input{
+    width: 60%;
+    margin-left: 3rem;
 }
