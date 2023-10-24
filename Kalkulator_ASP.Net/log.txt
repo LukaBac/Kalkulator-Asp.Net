@@ -1,0 +1,11 @@
+System.FormatException: String '' was not recognized as a valid DateTime.
+   at System.DateTimeParse.ParseExactMultiple(ReadOnlySpan`1 s, String[] formats, DateTimeFormatInfo dtfi, DateTimeStyles style)
+   at System.DateTime.ParseExact(String s, String[] formats, IFormatProvider provider, DateTimeStyles style)
+   at System.Data.SQLite.SQLiteConvert.ToDateTime(String dateText, SQLiteDateFormats format, DateTimeKind kind, String formatString)
+   at System.Data.SQLite.SQLiteConvert.ToDateTime(String dateText)
+   at System.Data.SQLite.SQLiteConvert.ToDateTime(IntPtr ptr, Int32 len)
+   at System.Data.SQLite.SQLite3.GetDateTime(SQLiteStatement stmt, Int32 index)
+   at System.Data.SQLite.SQLite3.GetValue(SQLiteStatement stmt, SQLiteConnectionFlags flags, Int32 index, SQLiteType typ)
+   at System.Data.SQLite.SQLiteDataReader.GetValue(Int32 i)
+   at System.Data.SQLite.SQLiteDataReader.get_Item(String name)
+   at Kalkulator_ASP.Net.Libraries.DatabaseLibrary.Database.ReadData(HomeModel calc) in C:\Users\thera\OneDrive\Desktop\Astral tech\C#\Kalkulator-Asp.Net\Kalkulator_ASP.Net\Libraries\DatabaseLibrary\Database.cs:line 58

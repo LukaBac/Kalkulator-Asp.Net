@@ -1,8 +1,9 @@
 ﻿using Kalkulator_ASP.Net.Models;
 using Microsoft.AspNetCore.Mvc;
-using Kalkulator_ASP.Net.CalculatorLib;
 using System;
 using System.Diagnostics;
+using Kalkulator_ASP.Net.Libraries.CalculatorLib;
+using Kalkulator_ASP.Net.Libraries.DatabaseLibrary;
 
 namespace Kalkulator_ASP.Net.Controllers
 {
@@ -10,6 +11,7 @@ namespace Kalkulator_ASP.Net.Controllers
     {
         public IActionResult Index()
         {
+            Database.CreateOrOpenDatabase();
             return View(new HomeModel());
         }
 
@@ -20,13 +22,26 @@ namespace Kalkulator_ASP.Net.Controllers
         {
             string btn = Request.Form["CalcButton"];
 
+            string deleteID = Request.Form["DeleteEntry"];
+
+            //za brisanje podataka iz baze
+            if(deleteID != null)
+            {
+                Database.DeleteEntry(Convert.ToInt32(deleteID));
+                Database.ReadData(calc);
+            }
+
+            //svo handleanje inputa je ovdje
             CalculatorInput.registerInput(btn, calc);
-            Console.WriteLine(btn);
+
+            //refreshanje liste za prikazivanje baze
+            if ((btn == "btn_history" || btn == "btn_modeChange") && calc.isHistory == "yes") {
+                Database.ReadData(calc);
+            }
+
 
             return View(calc);
         }
-
-
 
 
         #region PreGenerated

@@ -6,33 +6,53 @@
 @using (Html.BeginForm("Index", "Home", FormMethod.Post))
         {
 <div class="kalkulator @(Model.IsScientific == "yes" ? "scientificCalc" : "normalCalc")">
-    @*//Koliko sam shvatio, moram bindat property iz modela nekako unutar View-a inace se uvijek resetiraju promjene koje napravim u kontroleru
-                //ima li pametniji nacin za ovo gdje se ne koristi sakriven textbox?*@
+    @*Koliko sam shvatio, moram bindat property iz modela unutar View-a inace se uvijek resetiraju promjene koje napravim u kontroleru
+      ima li pametniji nacin za ovo gdje se ne koristi sakriven textbox?
+      Probao sam sa HTML.HiddenFor i nije radio, takodjer bool varijable nisu radile
+      Trenutno ovo funkcionira samo mi se ne cini kao najbolje rjesenje :)*@
     <input type="text" class="hiddenText" id="Mem" name="Mem" value="@Model.Mem">
     <input type="text" class="hiddenText" name="Zadnjigumb" value="@Model.Zadnjigumb">
     <input type="text" class="hiddenText" name="IsScientific" value="@Model.IsScientific">
     <input type="text" class="hiddenText" name="ScientificMode" value="@Model.ScientificMode">
-    <div class="row" id="row1">
-                <div>
-                    <button type="submit" class="modeButtons" id="btn_history">History</button>
-                    <button type="submit" class="modeButtons" id="btn_mode" value="btn_modeChange" name="CalcButton">
-                        @if(Model.IsScientific == "no")
-                        {
-                            <span>Scientific</span>
-                        }
-                        else if(Model.IsScientific == "yes")
-                        {
-                            <span>Basic</span>
-                        }
-                    </button>
+    <input type="text" class="hiddenText" name="isHistory" value="@Model.isHistory">
+   
+    <div class="historyDiv @(Model.isHistory == "yes" ? "visible" : "hidden") @(Model.IsScientific == "yes" ? "historyWide" : "historyNormal")">
+            @foreach(var item in Model.Database)
+            {
+                <div class="historyItem"> 
+                    <div style="width: 180px;">
+                        <p class="historyItemDate"><b>@item.ID</b>.   @item.DateCreated.ToString("yyyy-MM-dd")</p>
+                        <p class="historyItemText">@item.Expression</p>
+                    </div>                  
+                    <button class="deleteEntry" value="@item.ID" name="DeleteEntry">X</button>
                 </div>
-                <input readonly type="text" id="Racun1" name="Racun1" asp-for="Racun1"  value="@Model.Racun1"> 
-            </div>
+                <div class="separator"></div>
+            }
 
-        <div class="row" id="row2">
-            <input readonly type="text" id="Racun2" name="Racun2" asp-for="Racun2"  value="@Model.Racun2"> 
+    </div>
+
+    <div class="row" id="row1">
+        <div>
+            <button type="submit" class="modeButtons" id="btn_history" value="btn_history" name="CalcButton">History</button>
+            <button type="submit" class="modeButtons" id="btn_mode" value="btn_modeChange" name="CalcButton">
+                @if(Model.IsScientific == "no")
+                {
+                    <span>Scientific</span>
+                }
+                else if(Model.IsScientific == "yes")
+                {
+                    <span>Basic</span>
+                }
+            </button>
         </div>
-    <div style="display: flex;">
+        <input readonly type="text" id="Racun1" name="Racun1" value="@Model.Racun1"> 
+    </div>
+
+    <div class="row" id="row2">
+        <input readonly type="text" id="Racun2" name="Racun2" value="@Model.Racun2"> 
+    </div>
+
+    <div style="display: flex;" class="mainWrapper">
         <div class="calculator">
             <div class="row" id="row3">
                 <button class="Calc_Button" type="submit" id="btn_changeprefix" value="btn_changeprefix" name="CalcButton">+/-</button>
@@ -69,8 +89,8 @@
 
         <div class="scientific">
             <div class="row" id="scientificRow1">
-                <button class="Calc_Button" type="radio" id="btn_rad" value="btn_rad" name="CalcButton">Rad</button>
-                <button class="Calc_Button" type="radio" id="btn_deg" value="btn_deg" name="CalcButton">Deg</button>
+                <button class="Calc_Button @(Model.ScientificMode == "rad" ? "selectedButton" : "")" type="radio" id="btn_rad" value="btn_rad" name="CalcButton">Rad</button>
+                <button class="Calc_Button @(Model.ScientificMode == "deg" ? "selectedButton" : "")" type="radio" id="btn_deg" value="btn_deg" name="CalcButton">Deg</button>
                 <input readonly type="text" id="Racun3" name="Racun3" asp-for="Racun3"  value="@Model.Racun3"> 
             </div>
 
@@ -100,3 +120,7 @@
     </div>
 </div>
 }
+
+<script>
+
+</script>

@@ -1,3 +1,8 @@
+:root {
+    --mainGray: #f5f5f5;
+}
+
+
 html {
   font-size: 14px;
   margin: 0;
@@ -29,17 +34,13 @@ body {
     width: 800px;
     height: 820px;
     background-color: rgb(255, 0, 0);
-    /*margin-top: 10px;*/
     background-color: #262626;
     border: 2px solid #d4970b;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-}
-
-.scientificCalc {
-    width: 1500px;
+    position: relative;
 }
 
 .normalCalc {
@@ -48,12 +49,16 @@ body {
 
 .calculator{
     width: 780px;
-    margin-left: 10px;
 }
 
 #Racun1, #Racun2 {
     height: 40px;
     text-align: right;
+    background-color: var(--mainGray);
+}
+
+#Racun3 {
+    background-color: var(--mainGray);
 }
 
 .row{
@@ -61,7 +66,7 @@ body {
 }
 
 #row1 input {
-    width: 70%;
+    width: 70.4%;
     position: absolute;
     margin-left: 30%;
     margin-right: 1rem;
@@ -75,6 +80,7 @@ body {
     width: 100%;
     position: relative;
     margin-right: 1rem;
+    z-index: 999;
 }
 
 #row1 button{
@@ -86,8 +92,8 @@ body {
 }
 
 #row2 input{
-    width: 99%;
-    margin-left: 0.5%;
+    width: 98.5%;
+    margin-left: 0.5rem;
 }
 
 #row3 {
@@ -99,7 +105,7 @@ body {
 .Calc_Button{
     width: 80px;
     height: 60px;
-    background-color: white;
+    background-color: var(--mainGray);
     font-weight: bold;
 }
 
@@ -133,7 +139,94 @@ body {
     margin-left: 3rem;
 }
 
-.scientific .row input{
+#Racun3{
     width: 60%;
     margin-left: 3rem;
+}
+
+/**SCIENTIFIC**/
+
+.scientific {
+    margin-left: 2rem;
+}
+
+.scientificCalc {
+    width: 1500px;
+}
+
+.scientificCalc #Racun1{
+    width: 69.5%;
+}
+
+.scientificCalc .mainWrapper{
+    margin-left: -3.6rem;
+}
+
+.selectedButton {
+    background-color: orange;
+}
+
+/**HISTORY**/
+.historyDiv {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    position: absolute;
+    left: 10px;
+    top: 140px;
+    background-color: #c2c2c2;
+    border: 2px solid black;
+    z-index: 9999;
+    height: 660px;
+    overflow-y: auto;
+}
+
+.historyWide {
+    width: 1477px;
+}
+
+.historyNormal{
+    width: 777px;
+}
+
+.hidden {
+    display: none;
+}
+
+.visible {
+    display: flex;
+}
+
+.historyItem{
+    margin: 20px 40px;
+    position: relative;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 250px;
+}
+
+.historyItemText {
+    width: 100%;
+}
+
+.deleteEntry {
+    position: absolute;
+    top: 20px;
+    right: 5px;
+    background-color: transparent;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    margin-left: 5rem;
+}
+
+.separator{
+    height: 2px;
+    width: 95%;
+    background-color: black;
+    margin-left: 2.5%;
+    margin-top: -1rem;
 }

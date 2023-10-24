@@ -9,7 +9,10 @@
         public double Mem { get; set; }
         public string IsScientific { get; set; } = "no";
         public bool test { get; set; }
-
         public string ScientificMode { get; set; } = "rad";
+
+        public string isHistory { get; set; } = "no";
+
+        public List<DatabaseModel> Database = new List<DatabaseModel>();
     }
 }
