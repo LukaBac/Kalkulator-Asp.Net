@@ -1,0 +1,255 @@
+:root {
+    --mainGray: #f5f5f5;
+    --highlightGray: #d1d1d1;
+}
+
+
+html {
+  font-size: 14px;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+/*.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}*/
+
+body {
+    background-color: #9e9e9e;
+}
+
+.hiddenText{
+    display: none;
+}
+
+
+/***KALKULATOR***/
+.kalkulator {
+    width: 800px;
+    height: 820px;
+    background-color: rgb(255, 0, 0);
+    background-color: #262626;
+    border: 2px solid #d4970b;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    position: relative;
+}
+
+.normalCalc {
+    width: 800px;
+}
+
+.calculator{
+    width: 780px;
+}
+
+#Racun1, #Racun2 {
+    height: 40px;
+    text-align: right;
+    background-color: var(--mainGray);
+}
+
+#Racun3 {
+    background-color: var(--mainGray);
+}
+
+.row{
+    margin: 20px 0;
+}
+
+#row1 input {
+    width: 70.4%;
+    position: absolute;
+    margin-left: 30%;
+    margin-right: 1rem;
+}
+
+#row1 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+    width: 100%;
+    position: relative;
+    margin-right: 1rem;
+    z-index: 999;
+}
+
+#row1 button{
+    margin-left: 1rem;
+}
+
+#row2{
+    width: 100%;
+}
+
+#row2 input{
+    width: 98.5%;
+    margin-left: 0.5rem;
+}
+
+#row3 {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 50px;
+}
+
+.Calc_Button{
+    width: 80px;
+    height: 60px;
+    background-color: var(--mainGray);
+    font-weight: bold;
+    border: 1px solid black;
+}
+
+.modeButtons{
+    background-color: var(--mainGray);
+    padding: 3px 10px;
+    box-shadow: none;
+    border: 1px solid black;
+}
+
+.Calc_Button:focus, .modeButtons:focus {
+    box-shadow: none;
+    background-color: var(--highlightGray);
+}
+
+.OperationBtn:focus{
+    background-color: darkorange;
+}
+
+.button-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 90px);
+    justify-content: space-between;
+    align-items: center;
+    grid-gap: 50px;
+    margin: 20px 50px;
+    margin-top: 4rem;
+}
+
+
+
+.OperationBtn{
+    background-color: orange;
+    border: 1px solid black;
+    width: 90px;
+}
+
+.normalCalc .scientific{
+    display: none;
+}
+
+.scientific .row{
+    display: flex;
+    flex-direction: row;
+    margin: 0;
+    margin-left: 3rem;
+}
+
+#Racun3{
+    width: 60%;
+    margin-left: 3rem;
+}
+
+/**SCIENTIFIC**/
+
+.scientific {
+    margin-left: 2rem;
+}
+
+.scientificCalc {
+    width: 1500px;
+}
+
+.scientificCalc #Racun1{
+    width: 69.5%;
+}
+
+.scientificCalc .mainWrapper{
+    margin-left: -3.6rem;
+}
+
+.selectedButton {
+    background-color: orange;
+}
+
+/**HISTORY**/
+.historyDiv {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    position: absolute;
+    left: 10px;
+    top: 140px;
+    background-color: #c2c2c2;
+    border: 2px solid black;
+    z-index: 9999;
+    height: 660px;
+    overflow-y: auto;
+}
+
+.historyWide {
+    width: 1477px;
+}
+
+.historyNormal{
+    width: 777px;
+}
+
+.hidden {
+    display: none;
+}
+
+.visible {
+    display: flex;
+}
+
+.historyItem{
+    margin: 20px 40px;
+    position: relative;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 250px;
+}
+
+.historyItemText {
+    width: 100%;
+}
+
+.deleteEntry {
+    position: absolute;
+    top: 20px;
+    right: 5px;
+    background-color: transparent;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    margin-left: 5rem;
+    border: 1px solid black;
+}
+
+.deleteEntry:focus{
+    border: 1px solid grey;
+    transform: scale(1.05);
+}
+
+.separator{
+    height: 2px;
+    width: 95%;
+    background-color: black;
+    margin-left: 2.5%;
+    margin-top: -1rem;
+}
