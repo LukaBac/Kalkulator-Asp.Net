@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\Kalkulator_ASP.Net.props" />
+</Project>
