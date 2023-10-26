@@ -5,7 +5,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
 <Project>
   <PropertyGroup>
     <_PublishTargetUrl>C:\Users\thera\OneDrive\Desktop\Astral tech\C#\Kalkulator-Asp.Net\Kalkulator_ASP.Net\bin\Publish</_PublishTargetUrl>
-    <History>True|2023-10-24T18:48:13.7345032Z;True|2023-10-24T20:35:43.9872955+02:00;True|2023-10-24T20:34:17.7279774+02:00;True|2023-10-24T20:33:31.6919922+02:00;True|2023-10-24T20:31:45.2272415+02:00;True|2023-10-24T20:30:33.6321358+02:00;True|2023-10-24T20:14:56.1783365+02:00;</History>
+    <History>True|2023-10-25T18:16:54.5228734Z;True|2023-10-24T20:56:04.6795516+02:00;True|2023-10-24T20:48:13.7345032+02:00;True|2023-10-24T20:35:43.9872955+02:00;True|2023-10-24T20:34:17.7279774+02:00;True|2023-10-24T20:33:31.6919922+02:00;True|2023-10-24T20:31:45.2272415+02:00;True|2023-10-24T20:30:33.6321358+02:00;True|2023-10-24T20:14:56.1783365+02:00;</History>
     <LastFailureDetails />
   </PropertyGroup>
 </Project>
